@@ -26,7 +26,7 @@ public class Start extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(Start.this, MapSets.class);
+				Intent intent = new Intent(Start.this, ted.baidumap.demo.MainActivity.class);
 				startActivity(intent);
 			}
 		});
