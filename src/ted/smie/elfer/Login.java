@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Login extends Activity {
+public class Login extends Activity { 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

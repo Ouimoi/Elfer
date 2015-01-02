@@ -36,7 +36,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
          <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="wAk2wbUW5Q8Wv9yfvFx233xY" />
@@ -52,8 +52,7 @@
         <activity
             android:name="com.zbar.lib.CaptureActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MapSets"
@@ -77,7 +76,8 @@
         </activity>
          <activity
             android:name="ted.baidumap.demo.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
         </activity>
     </application>
 
