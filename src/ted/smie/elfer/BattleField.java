@@ -13,13 +13,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MapSets extends Activity {
+public class BattleField extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mapsets);
+		Intent i=getIntent();
+		//TODO:根据数据库选择精灵i.getExtras().getInt("buttonId");
+		
 		
 		/********************抽屉界面的事件处理*******************************/
 		// 点击左侧菜单栏里的元素，跳转到相应的界面    设置
@@ -28,7 +31,7 @@ public class MapSets extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MapSets.this, Setting.class);
+				Intent intent = new Intent(BattleField.this, Setting.class);
 				startActivity(intent);
 			}
 		});
@@ -39,7 +42,7 @@ public class MapSets extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MapSets.this, Packs.class);
+				Intent intent = new Intent(BattleField.this, Packs.class);
 				startActivity(intent);
 			}
 		});
@@ -50,7 +53,7 @@ public class MapSets extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MapSets.this, AboutUs.class);
+				Intent intent = new Intent(BattleField.this, AboutUs.class);
 				startActivity(intent);
 			}
 		});
@@ -66,7 +69,7 @@ public class MapSets extends Activity {
 			}
 		});
 		/********************抽屉界面的事件处理*******************************/
-
+		
 	}
 
 	// 左侧菜单栏的实现
@@ -74,12 +77,12 @@ public class MapSets extends Activity {
 			android.support.v4.widget.SlidingPaneLayout.PanelSlideListener {
 		@Override
 		public void onPanelClosed(View view) {
-			MapSets.this.closeOptionsMenu();
+			BattleField.this.closeOptionsMenu();
 		}
 
 		@Override
 		public void onPanelOpened(View viw) {
-			MapSets.this.openOptionsMenu();
+			BattleField.this.openOptionsMenu();
 		}
 
 		@Override

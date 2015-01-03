@@ -4,11 +4,17 @@
     <string name="app_name">Elfer</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-	<string name="start">开始游戏</string>
-	<string name="packs">背包</string>
-	<string name="aboutUs">关于我们</string>
-	<string name="set">设置</string>
-	<string name="exit">退出</string>
-	 
-	
+    <string name="start">开始游戏</string>
+    <string name="packs">背包</string>
+    <string name="aboutUs">关于我们</string>
+    <string name="set">设置</string>
+    <string name="exit">退出</string>
+    <!-- BaiduMap -->
+    
+    <!-- QR -->
+    
+    <string name="scan_tips">对准栖息地入口的二维码，精灵雷达探测中..</string>
+    
+    <string name="Elfer">Hello World, SurfaceViewPlayVideo!</string>
+
 </resources>

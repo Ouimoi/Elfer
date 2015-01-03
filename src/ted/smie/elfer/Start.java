@@ -14,7 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class Start extends Activity {
-
+ 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,7 +26,7 @@ public class Start extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(Start.this, ted.baidumap.demo.MainActivity.class);
+				Intent intent = new Intent(Start.this, ted.smie.elfer.map.ElfMap.class);
 				startActivity(intent);
 			}
 		});

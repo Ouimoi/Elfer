@@ -28,7 +28,10 @@
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <!-- video-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -37,12 +40,27 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
-         <meta-data
+        
+        <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="wAk2wbUW5Q8Wv9yfvFx233xY" />
+        
+        
+        <!-- ted.smie.elfer -->
         <activity
-            android:name=".Start"
-            android:label="@string/app_name" >
+            android:name=".BattleField"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".OpenAnimation"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,34 +68,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.zbar.lib.CaptureActivity"
+            android:name=".Start"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape" >
         </activity>
-        <activity
-            android:name=".MapSets"
-            android:label="@string/app_name" >
-        </activity>
+        
+        
+        <!-- ted.smie.elfer.navigator -->
         <activity
             android:name=".navigator.Packs"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".navigator.AboutUs"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".navigator.Setting"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
         </activity>
+        
+        
+        <!-- QRscan -->
         <activity
-            android:name=".Login"
-            android:label="@string/app_name" >
+            android:name="com.zbar.lib.CaptureActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
-         <activity
-            android:name="ted.baidumap.demo.MainActivity"
-            android:label="@string/app_name" 
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+        
+        
+        <!-- BaiduMap -->
+        <activity
+            android:name="ted.smie.elfer.map.ElfMap"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme" >
         </activity>
     </application>
 
