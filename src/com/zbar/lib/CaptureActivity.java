@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.SurfaceHolder;
+import android.view.WindowManager;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.animation.Animation;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.zbar.lib.camera.CameraManager;
 import com.zbar.lib.decode.CaptureActivityHandler;
 import com.zbar.lib.decode.InactivityTimer;
+
 /**
  * 作者: 陈涛(1076559197@qq.com)
  * 
@@ -55,6 +57,7 @@ public class CaptureActivity extends Activity implements Callback {
 	private boolean isNeedCapture = false;
 	static ProgressDialog pd;
 	String bId;
+
 	public boolean isNeedCapture() {
 		return isNeedCapture;
 	}
@@ -99,11 +102,12 @@ public class CaptureActivity extends Activity implements Callback {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.activity_qr_scan);
-		Intent i=getIntent();
-		bId=i.getExtras().getString("buttonId").toString();
-		
+		// 屏幕长亮
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		setContentView(R.layout.captureactivity);
+		Intent i = getIntent();
+		bId = i.getExtras().getString("buttonId").toString();
+
 		// 初始化 CameraManager
 		CameraManager.init(getApplication());
 		hasSurface = false;
@@ -113,11 +117,13 @@ public class CaptureActivity extends Activity implements Callback {
 		mCropLayout = (RelativeLayout) findViewById(R.id.capture_crop_layout);
 
 		ImageView mQrLineView = (ImageView) findViewById(R.id.capture_scan_line);
-		Log.i("null",Integer.toString(R.id.capture_scan_line));
-		if(mQrLineView==null)
-			Log.i("null","null");
-		TranslateAnimation mAnimation = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.ABSOLUTE, 0f,
-				TranslateAnimation.RELATIVE_TO_PARENT, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.9f);
+		Log.i("null", Integer.toString(R.id.capture_scan_line));
+		if (mQrLineView == null)
+			Log.i("null", "null");
+		TranslateAnimation mAnimation = new TranslateAnimation(
+				TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.ABSOLUTE,
+				0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,
+				TranslateAnimation.RELATIVE_TO_PARENT, 0.9f);
 		mAnimation.setDuration(1500);
 		mAnimation.setRepeatCount(-1);
 		mAnimation.setRepeatMode(Animation.REVERSE);
@@ -181,17 +187,20 @@ public class CaptureActivity extends Activity implements Callback {
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
 		pd.dismiss();
-		if(result.equals(bId)){
-		Intent i=new Intent(getApplicationContext(),ted.smie.elfer.BattleField.class);
-		Bundle b=new Bundle();
-		b.putString("buttonId", result);
-		i.putExtras(b);
-		startActivity(i);}
-		else {
+		if (result.equals(bId)) {
+			Intent i = new Intent(getApplicationContext(),
+					ted.smie.elfer.BattleField.class);
+			Bundle b = new Bundle();
+			b.putString("buttonId", result);
+			i.putExtras(b);
+			startActivity(i);
+		} else {
 			finish();
-			Toast.makeText(CaptureActivity.this, "这里不是图上对应的精灵栖息地，你来错地方了", Toast.LENGTH_SHORT).show();
+			Toast.makeText(CaptureActivity.this, "这里不是图上对应的精灵栖息地，你来错地方了",
+					Toast.LENGTH_SHORT).show();
 		}
-		//Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+		// Toast.makeText(getApplicationContext(), result,
+		// Toast.LENGTH_SHORT).show();
 		// 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
 		// handler.sendEmptyMessage(R.id.restart_preview);
 	}
@@ -207,8 +216,10 @@ public class CaptureActivity extends Activity implements Callback {
 			int x = mCropLayout.getLeft() * width / mContainer.getWidth();
 			int y = mCropLayout.getTop() * height / mContainer.getHeight();
 
-			int cropWidth = mCropLayout.getWidth() * width / mContainer.getWidth();
-			int cropHeight = mCropLayout.getHeight() * height / mContainer.getHeight();
+			int cropWidth = mCropLayout.getWidth() * width
+					/ mContainer.getWidth();
+			int cropHeight = mCropLayout.getHeight() * height
+					/ mContainer.getHeight();
 
 			setX(x);
 			setY(y);
@@ -216,7 +227,6 @@ public class CaptureActivity extends Activity implements Callback {
 			setCropHeight(cropHeight);
 			// 设置是否需要截图
 			setNeedCapture(true);
-			
 
 		} catch (IOException ioe) {
 			return;
@@ -229,7 +239,8 @@ public class CaptureActivity extends Activity implements Callback {
 	}
 
 	@Override
-	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+			int height) {
 
 	}
 
@@ -258,9 +269,11 @@ public class CaptureActivity extends Activity implements Callback {
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 			mediaPlayer.setOnCompletionListener(beepListener);
 
-			AssetFileDescriptor file = getResources().openRawResourceFd(R.raw.beep);
+			AssetFileDescriptor file = getResources().openRawResourceFd(
+					R.raw.beep);
 			try {
-				mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
+				mediaPlayer.setDataSource(file.getFileDescriptor(),
+						file.getStartOffset(), file.getLength());
 				file.close();
 				mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
 				mediaPlayer.prepare();
@@ -275,7 +288,8 @@ public class CaptureActivity extends Activity implements Callback {
 	private void playBeepSoundAndVibrate() {
 		if (playBeep && mediaPlayer != null) {
 			mediaPlayer.start();
-			pd=ProgressDialog.show(CaptureActivity.this, "精灵检测仪","好像这个地方藏着什么，扫描中...",true,true);
+			pd = ProgressDialog.show(CaptureActivity.this, "精灵检测仪",
+					"好像这个地方藏着什么，扫描中...", true, true);
 		}
 		if (vibrate) {
 			Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);

@@ -4,6 +4,7 @@ import ted.smie.elfer.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.WindowManager;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
@@ -31,6 +32,8 @@ public class ElfMap extends ActionBarActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// 屏幕长亮
+				getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		SDKInitializer.initialize(getApplicationContext());
 		LatLng p = new LatLng(22.352921, 113.596621);
 		mMapView = new MapView(this,

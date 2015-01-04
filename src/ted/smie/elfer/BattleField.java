@@ -3,13 +3,12 @@
 import ted.smie.elfer.navigator.AboutUs;
 import ted.smie.elfer.navigator.Packs;
 import ted.smie.elfer.navigator.Setting;
-
 import ted.smie.elfer.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
@@ -19,7 +18,9 @@ public class BattleField extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.mapsets);
+		setContentView(R.layout.battlefield);
+		// 屏幕长亮
+				getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		Intent i=getIntent();
 		//TODO:根据数据库选择精灵i.getExtras().getInt("buttonId");
 		

@@ -39,6 +39,7 @@ public class OpenAnimation extends Activity
 		public void run() {
 			try {
 				play();
+				autoPlayHandler.postDelayed(exit, 2000);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -46,11 +47,27 @@ public class OpenAnimation extends Activity
 		}
 
 	};
+	Runnable exit = new Runnable() {
+		@Override
+		public void run() {
+			if(mPlayer.getCurrentPosition()==mPlayer.getDuration())
+			{
+				Intent intent = new Intent();  
+                intent.setClass(OpenAnimation.this,Login.class);  
+                startActivity(intent);  
+                OpenAnimation.this.finish();
+			}
+			else
+				autoPlayHandler.postDelayed(exit, 2000);
+		}
+	};
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.openanim);
+		//屏幕长亮
+				getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); 
 		// 创建MediaPlayer
 		mPlayer = new MediaPlayer();
 		surfaceView = (SurfaceView) this.findViewById(R.id.surfaceView);
