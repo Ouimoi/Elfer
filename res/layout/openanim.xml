@@ -15,7 +15,7 @@
 <TextView
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:text="点击跳过动画" 
+	    android:text="长按画面跳过动画" 
 	    android:textColor="#FFFFFF"
 	    android:textSize="20sp"/>
 </RelativeLayout>
